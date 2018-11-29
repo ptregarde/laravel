@@ -52,6 +52,8 @@
 			{!! Form::submit('Delete User', ['class'=>'btn btn-danger col-sm-6']) !!}
 		</div>
 
+		{!! Form::close() !!}
+		
 		@include('includes.form_error')
 
 	</div>
