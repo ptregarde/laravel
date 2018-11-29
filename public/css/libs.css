@@ -8688,3 +8688,11 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 /*# sourceMappingURL=libs.css.map */
+
+#nested-comment{
+  margin-top: 30px;
+}
+
+.comment-reply{
+  display:none;
+}
