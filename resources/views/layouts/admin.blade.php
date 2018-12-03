@@ -163,10 +163,6 @@
                                 <a href="{{route('categories.index')}}">All Categories</a>
                             </li>
 
-                            <li>
-                                <a href="#">Create Category</a>
-                            </li>
-
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>

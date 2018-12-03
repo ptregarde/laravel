@@ -37,7 +37,7 @@
 				<td>{{ str_limit($post->body, 30) }}</td>
 				<td>{{ $post->created_at->diffForHumans() }}</td>
 				<td>
-					<a href="{{route('home.post', $post->id)}}">
+					<a href="{{route('home.post', $post->slug)}}">
 						<div class="btn btn-primary">View Post</div>
 					</a>
 				</td>
@@ -50,4 +50,10 @@
 			@endforeach
 		</tbody>
 	</table>
+
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-5">
+			{{$posts->render()}}
+		</div>
+	</div>
 @endsection

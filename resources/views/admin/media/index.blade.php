@@ -5,9 +5,20 @@
 
 	@if($photos)
 
+	{!! Form::open(['method'=>'POST', 'class'=>'form-inline', 'action'=>['AdminMediaController@bulkDelete']]) !!}
+
+	<div class="form-group">
+		{!! Form::select('checkBoxArray', ['delete'=>'Delete'], null, ['class'=>'form-control']) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
+	</div>
+
 	<table class="table">
 		<thead>
 			<tr>
+				<th>{!! Form::checkbox('options', null, null, ['id'=>'options']) !!}</th>
 				<th>ID</th>
 				<th>Photo</th>
 				<th>Name</th>
@@ -19,6 +30,7 @@
 		<tbody>
 			@foreach($photos as $photo)
 			<tr>
+				<td>{!! Form::checkbox('checkBoxArray[]', $photo->id, null, ['class'=>'checkBoxes']) !!}</td>
 				<td>{{ $photo->id }}</td>
 				<td>
 					<img height="50" src="{{ $photo->file ? $photo->file : 'images/default.png' }}">
@@ -41,5 +53,31 @@
 		</tbody>
 	</table>
 
+	{!! Form::close() !!}
+
 	@endif
+
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#options').click(function(){
+			if(this.checked){
+				$('.checkBoxes').each(function(){
+					this.checked = true;
+				});
+			}
+
+			else{
+				$('.checkBoxes').each(function(){
+					this.checked = false;
+				});
+			}
+		});
+	});
+</script>
+
 @endsection

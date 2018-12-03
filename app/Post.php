@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Post extends Model
 {
+    use Sluggable; 
+    use SluggableScopeHelpers;
+
+
     protected $fillable = [
     	
     	'category_id',
@@ -29,5 +35,18 @@ class Post extends Model
 
     public function comments(){
         return $this->hasMany('App\Comment');
+    }
+
+    public function sluggable(){
+        return[
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => true,
+            ]
+        ];
+    }
+
+    public function placeholderImage(){
+        return "http://placehold.it/720x480";
     }
 }

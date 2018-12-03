@@ -2,10 +2,11 @@
 
 
 @section('content')
+	@include('includes.tinymce');
 	<h1>Edit Post</h1>
 
 	<div class="col-sm-3">
-		<img height = "100" src="{{ $post->photo ? $post->photo->file : '/images/default.png' }}">
+		<img class="img-responsive" src="{{$post->photo ? $post->photo->file : $post->placeholderImage()}}" alt="">
 	</div>
 
 	<div class="col-sm-9">

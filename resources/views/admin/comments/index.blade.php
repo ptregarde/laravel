@@ -25,7 +25,7 @@
 				<td>{{$comment->body}}</td>
 				<td>{{$comment->created_at->diffForHumans()}}</td>
 				<td>
-					<a href="{{route('home.post', $comment->post->id)}}">
+					<a href="{{route('home.post', $comment->post->slug)}}">
 						<div class="btn btn-primary">View Post</div>
 					</a>
 				</td>				

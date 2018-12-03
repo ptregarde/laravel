@@ -37,11 +37,15 @@ Route::group(['middleware'=>'admin'], function(){
 	Route::get('/admin', function(){
 		return view('admin.index');
 	});
+
+	Route::delete('/bulkDelete', 'AdminMediaController@bulkDelete');
 	
 });
+
 
 
 Route::group(['middleware'=>'auth'], function(){
 
 	Route::post('comment/reply', 'CommentRepliesController@store');
 });
+
