@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CommentReply;
 use App\Comment;
+use App\Category;
 
 class CommentRepliesController extends Controller
 {
@@ -66,7 +67,9 @@ class CommentRepliesController extends Controller
 
         $replies = $comment->replies;
 
-        return view('admin.comments.replies.show', compact('replies'));
+        $categories = Category::all();
+
+        return view('admin.comments.replies.show', compact('replies', 'categories'));
     }
 
     /**

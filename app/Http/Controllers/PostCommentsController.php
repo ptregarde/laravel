@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Comment;
 use App\CommentReply;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -46,7 +47,7 @@ class PostCommentsController extends Controller
         $data = [
             'post_id' => $request->post_id,
             'author' => $user->name,
-            'photo' => $user->photo->file,
+            'photo' => $user->photo ? $user->photo->file : 'placehold.it/64x64',
             'email' => $user->email,
             'body' => $request->body
         ];
@@ -64,15 +65,15 @@ class PostCommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $slug)
+    public function show($id)
     {
-        $post = Post::findBySlugOrIdOrFail($slug);
+        $post = Post::findOrFail($id);
 
         $comments = Comment::wherePostId($id)->get();
 
- 
+        $categories = Category::all();
 
-        return view('admin.comments.show', compact('comments', 'post'));
+        return view('admin.comments.show', compact('comments', 'post', 'categories'));
     }
 
     /**

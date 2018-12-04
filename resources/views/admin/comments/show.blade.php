@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h1>{{$post->title}} Comments</h1>
+	<h1>Comments</h1>
 
 	@if(count($comments) > 0)
 	<table class="table">
@@ -26,7 +26,7 @@
 				<td>{{$comment->body}}</td>
 				<td>{{$comment->created_at->diffForHumans()}}</td>
 				<td>
-					<a href="{{route('home.post', $comment->post->id)}}">
+					<a href="{{route('home.post', $comment->post->slug)}}">
 						<div class="btn btn-primary">View</div>
 					</a>
 				</td>
