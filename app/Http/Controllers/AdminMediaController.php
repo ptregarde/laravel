@@ -97,12 +97,27 @@ class AdminMediaController extends Controller
     }
 
     public function bulkDelete(Request $request){
-        $photos = Photo::findOrFail($request->checkBoxArray);
 
-        foreach($photos as $photo){
-            $photo->delete();
+        // if(isset($request->delete_single)){
+        //     $this->destroy($request->media_id);
+        //     return redirect()->back();
+
+        // }
+
+        if(isset($request->delete_bulk) && !empty($request->checkBoxArray)) {
+            $photos = Photo::findOrFail($request->checkBoxArray);
+
+            foreach($photos as $photo){
+                $photo->delete();
+            }
+
+            return redirect()->back();
+
         }
 
-        return redirect()->back();
+        else {
+            return redirect('/admin/media');
+        }
+
     }
 }

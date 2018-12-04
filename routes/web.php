@@ -38,7 +38,7 @@ Route::group(['middleware'=>'admin'], function(){
 		return view('admin.index');
 	});
 
-	Route::delete('/bulkDelete', 'AdminMediaController@bulkDelete');
+	Route::delete('/bulkDelete', ['uses'=>'AdminMediaController@bulkDelete', 'as'=>'bulkDelete']);
 	
 });
 

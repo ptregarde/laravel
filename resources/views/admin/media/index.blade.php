@@ -5,14 +5,14 @@
 
 	@if($photos)
 
-	{!! Form::open(['method'=>'POST', 'class'=>'form-inline', 'action'=>['AdminMediaController@bulkDelete']]) !!}
+	{!! Form::open(['method'=>'DELETE', 'class'=>'form-inline', 'action'=>['AdminMediaController@bulkDelete']]) !!}
 
 	<div class="form-group">
-		{!! Form::select('checkBoxArray', ['delete'=>'Delete'], null, ['class'=>'form-control']) !!}
+		{!! Form::select('checkBoxArray', [''=>'Delete'], null, ['class'=>'form-control']) !!}
 	</div>
 
 	<div class="form-group">
-		{!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
+		{!! Form::submit('Submit', ['class'=>'btn btn-primary', 'name'=>'delete_bulk']) !!}
 	</div>
 
 	<table class="table">
@@ -23,7 +23,7 @@
 				<th>Photo</th>
 				<th>Name</th>
 				<th>Created</th>
-				<th>Actions</th>
+				{{-- <th>Actions</th> --}}
 			</tr>
 		</thead>
 
@@ -38,15 +38,10 @@
 				<td>{{ $photo->file }}</td>
 				<td>{{ $photo->created_at->diffForHumans() }}</td>
 				<td>
-					{!! Form::open(['method'=>'DELETE', 'action'=>['AdminMediaController@destroy', $photo->id]]) !!}
-
-					<div class="form-group">
-						{!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
-					</div>
-					
-					{!! Form::close() !!}
-
-
+					{!! Form::hidden('media_id', $photo->id, []) !!}
+					{{-- <div class="form-group">
+						{!! Form::submit('Delete', ['class'=>'btn btn-danger', 'name'=>'delete_single']) !!}
+					</div> --}}
 				</td>
 			</tr>
 			@endforeach
